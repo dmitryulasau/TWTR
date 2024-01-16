@@ -44,14 +44,9 @@ a {
 a:visited,
 a:active,
 a:link {
-  color: var(--white);
+  color: #fff;
 }
 
 /* COLORS */
 :root {
-  --color-bg: #1d3557;
-  --text-color: #061529;
-  --light-text: #f1faee;
-  --btn-start: #e63946;
-  --yellow: #ffd60a;
 }
