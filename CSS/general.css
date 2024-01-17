@@ -44,9 +44,16 @@ a {
 a:visited,
 a:active,
 a:link {
-  color: #fff;
+  color: inherit;
 }
 
 /* COLORS */
 :root {
+  --text-color: #0f1419;
+  --text-color-gray: #536471;
+  --white: #fff;
+  --line-gray: #eff3f4;
+  --background-hover: #e8f5fd;
+  --background-hover-dark: #1a8cd8;
+  --primary-color: #1d9bf0;
 }
