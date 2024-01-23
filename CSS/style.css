@@ -1,4 +1,4 @@
-/* LOGIN PAGE */
+/* MAIN PAGE */
 .big-container {
   display: flex;
   flex-direction: column;
@@ -96,46 +96,6 @@
   margin: 0 0.4rem;
 }
 
-.btn {
-  cursor: pointer;
-  border: 1px solid #dadce0;
-  background: var(--white);
-  transition: background 0.3s ease;
-
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-
-  border-radius: 10rem;
-  width: 100%;
-  max-width: 30rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.8rem;
-}
-
-.btn-signin {
-  color: var(--primary-color);
-}
-
-.btn-create {
-  color: var(--white);
-  background: var(--primary-color);
-  border: none;
-  margin-bottom: 0.8rem;
-}
-
-.btn-signin:hover {
-  background: var(--background-hover);
-}
-
-.btn-create:hover {
-  background: var(--background-hover-dark);
-}
-
 .main-auth__tos {
   color: var(--primary-color);
 }
@@ -174,4 +134,217 @@ footer {
   .main-auth__login-tos {
     word-wrap: break-word;
   }
+}
+
+/* MODAL SIGN UP */
+.sign-in-modal-container {
+  max-width: 60rem;
+  max-height: 80rem;
+  width: 100%;
+  height: 100%;
+
+  background: #fff;
+
+  padding: 3rem;
+
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* SIGN UP MODAL HEADER */
+.sign-in-modal-logo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.sign-in-modal-close {
+  flex: 0 0 40%;
+}
+
+.empty {
+  flex: 0 0 40%;
+}
+
+.twitter-logo-sign-in {
+  width: 4rem;
+}
+
+.close-modal-sign-in {
+  font-size: 2rem;
+}
+
+/* MODAL CONTENT */
+.sign-in-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.sign-in-modal-heading {
+  color: var(--text-color);
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+/* FORM */
+.form {
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.input-field {
+  position: relative;
+  height: 4rem;
+  height: 100%;
+  padding: 2rem 1rem 1rem 1rem;
+
+  border: 0.1rem solid var(--line-gray);
+  color: var(--text-color-gray);
+  outline: none;
+  border-radius: 0.5rem;
+
+  font-size: 2rem;
+  font-weight: 400;
+  width: 100%;
+  background: transparent;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+
+  color: var(--text-color);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+  color: var(--text-color-gray);
+  user-select: none;
+}
+
+.input-field:focus + label {
+  top: 1.4rem;
+  left: 1rem;
+  color: var(--primary-color);
+}
+.input-field:focus {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+#email-input:not(:placeholder-shown):not(:focus) + label,
+#password-input:not(:placeholder-shown):not(:focus) + label,
+#email-input-signup:not(:placeholder-shown):not(:focus) + label,
+#password-input-signup:not(:placeholder-shown):not(:focus) + label,
+#password-input-confirm:not(:placeholder-shown):not(:focus) + label {
+  top: 1.4rem;
+  left: 1rem;
+}
+
+/* BUTTONS */
+.but {
+  cursor: pointer;
+  border: 1px solid #dadce0;
+  background: var(--white);
+  transition: background 0.3s ease;
+
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+
+  border-radius: 10rem;
+  width: 100%;
+  max-width: 30rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem;
+}
+
+.but-signin {
+  color: var(--primary-color);
+}
+
+.but-create {
+  color: var(--white);
+  background: var(--primary-color);
+  border: none;
+  margin-bottom: 0.8rem;
+}
+
+.but-signin:hover {
+  background: var(--background-hover);
+}
+
+.but-create:hover {
+  background: var(--background-hover-dark);
+}
+
+.but-forgot:hover {
+  background: var(--background-hover);
+}
+
+.btn-close {
+  font-size: 1.6rem;
+}
+
+.bottom-action {
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ERRORS */
+
+.notification {
+  text-align: center;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  position: absolute;
+  display: none;
+
+  font-size: 1.2rem;
+
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
