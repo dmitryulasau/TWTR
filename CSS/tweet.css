@@ -1,0 +1,105 @@
+.tweet {
+  display: flex;
+
+  border-bottom: 1px solid #eff3f4;
+  border-left: 1px solid #eff3f4;
+  border-right: 1px solid #eff3f4;
+
+  padding: 12px 16px;
+  transition: 0.3s;
+}
+
+.tweet:last-child {
+}
+
+.tweet:hover {
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
+.tweet a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+.tweet a:hover {
+  text-decoration: underline;
+}
+
+.tweet__author-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  margin-right: 10px;
+}
+
+.tweet__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tweet__author-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f1419;
+  margin-right: 5px;
+}
+
+.tweet__author-slug {
+  color: #536471;
+  font-size: 15px;
+}
+
+.tweet__publish-time {
+  margin-left: 5px;
+  color: #536471;
+}
+
+.tweet__content {
+  font-size: 15px;
+  color: #0f1419;
+}
+
+.tweet__image {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.home-tweet {
+  color: #536471;
+  align-self: flex-start;
+}
+
+.what-new__headning-home {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f1419;
+  border-left: 1px solid #eff3f4;
+  border-right: 1px solid #eff3f4;
+  padding: 20px;
+}
+
+.tweet__content-0 {
+  align-self: center;
+  color: #536471;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.tweet-0 {
+  display: flex;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.tweet-0:hover {
+  cursor: text;
+  background: #fff;
+}
+
+.tweet__main {
+  display: flex;
+  flex-direction: column;
+}

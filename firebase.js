@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
@@ -25,6 +26,14 @@ function initializeFirebase() {
     // GET USER INFO
     const email = signupForm["email-input-signup"].value;
     const password = signupForm["password-input-signup"].value;
+    const confirmPassword = signupForm["password-input-confirm"].value;
+
+    if (password !== confirmPassword) {
+      const notification = document.getElementById("notifications");
+      notification.style.display = "block";
+      notification.textContent = "Passwords do not match";
+      return;
+    }
 
     try {
       // SIGN UP USER
@@ -59,6 +68,61 @@ function initializeFirebase() {
         "Firebase: Password should be at least 6 characters (auth/weak-password)."
       ) {
         notification.textContent = `Minimum 6 characters.`;
+      } else {
+        notification.textContent = `Something wrong`;
+      }
+    }
+  });
+
+  // LOGOUT
+  const logout = document.querySelector("#logout");
+  logout.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    auth.signOut().then(() => {
+      console.log("USER SIGNED OUT");
+    });
+  });
+
+  // LOGIN
+  const loginForm = document.querySelector("#login-form");
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // GET USER INFO
+    const emailLogin = loginForm["email-input"].value;
+    const passwordLogin = loginForm["password-input"].value;
+
+    try {
+      const credentials = await signInWithEmailAndPassword(
+        auth,
+        emailLogin,
+        passwordLogin
+      );
+
+      console.log(credentials);
+
+      const closeButton = document.querySelector(
+        "#logInModal button[data-bs-dismiss='modal']"
+      );
+      if (closeButton) {
+        closeButton.click();
+      }
+
+      const homePage = document.getElementById("main");
+      const tweeterPage = document.getElementById("tweeter");
+
+      homePage.style.display = "none";
+      tweeterPage.style.display = "flex";
+
+      clearForm();
+    } catch (error) {
+      console.error("Error creating user:", error.message);
+
+      const notification = document.getElementById("notifications-login");
+      notification.style.display = "block";
+      if (error.message == "Firebase: Error (auth/invalid-credential).") {
+        notification.textContent = `Wrong email/password combo`;
       } else {
         notification.textContent = `Something wrong`;
       }

@@ -25,18 +25,23 @@
     <!-- Stylesheet-->
     <link rel="stylesheet" href="./CSS/style.css" />
     <link rel="stylesheet" href="./CSS/general.css" />
+    <link rel="stylesheet" href="./CSS/leftbar.css" />
+    <link rel="stylesheet" href="./CSS/rightbar.css" />
+    <link rel="stylesheet" href="./CSS/follow.css" />
+    <link rel="stylesheet" href="./CSS/tweet.css" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="./ASSETS/favicon.ico" type="image/x-icon" />
     <!-- Script -->
   </head>
   <body>
-    <main class="container">
+    <main class="container" id="main">
       <section class="main-logo">
         <img class="twitter-logo" src="./ASSETS/logo.svg" alt="Twitter Logo" />
       </section>
       <section class="main-auth">
         <div class="main-auth__heading">Happening now</div>
         <div class="main-auth__subheading">Join today.</div>
+
         <div class="main-auth__login">
           <div class="main-auth__login-heading">Already have an account?</div>
           <button
@@ -227,6 +232,12 @@
           <div class="sign-in-modal-content">
             <h1 class="sign-in-modal-heading">Sign In to Twitter</h1>
 
+            <div
+              class="alert alert-primary notification"
+              id="notifications-login"
+              role="alert"
+            ></div>
+
             <form class="form" id="login-form">
               <div class="input-container">
                 <input
@@ -237,6 +248,7 @@
                   id="email-input"
                   autocomplete="off"
                   required
+                  onfocus="hideNotificationLogin()"
                 />
                 <label for="email-input">Email address</label>
               </div>
@@ -249,6 +261,7 @@
                   id="password-input"
                   autocomplete="off"
                   required
+                  onfocus="hideNotificationLogin()"
                 />
                 <label for="password-input">Password</label>
               </div>
@@ -257,6 +270,7 @@
             </form>
 
             <button class="but but-forgot">Forgot Password?</button>
+
             <div class="or-line"><hr /></div>
             <div class="bottom-action">
               Don't have an account?
@@ -319,6 +333,305 @@
     <!-- ACCOUNT MODAL END -->
 
     <!-- TWEET MODAL -->
+    <div class="" id="tweeter">
+      <!-- DELETE --><!-- DELETE --><!-- DELETE -->
+      <button class="btn btn-danger" id="logout">LOGOUT</button>
+      <!-- DELETE --><!-- DELETE --><!-- DELETE -->
+      <div class="container main-container">
+        <div class="row">
+          <!-- LEFT MENU -->
+          <div class="col">
+            <div class="left">
+              <!-- NAV -->
+              <div class="leftbar-section">
+                <div class="leftbar-logo">
+                  <img
+                    src="https://res.cloudinary.com/dulasau/image/upload/v1706404119/logo_er8kfx.svg"
+                    alt="twitter old logo"
+                  />
+                </div>
+                <div class="leftbar-container">
+                  <div class="leftbar-item">
+                    <ion-icon name="home-sharp"></ion-icon><span>Home</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="search-outline"></ion-icon
+                    ><span>Explore</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="notifications-outline"></ion-icon
+                    ><span>Notifications</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="mail-outline"></ion-icon
+                    ><span>Messages</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="newspaper-outline"></ion-icon
+                    ><span>Lists</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="people-outline"></ion-icon
+                    ><span>Communities</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon name="person-outline"></ion-icon
+                    ><span>Profile</span>
+                  </div>
+                  <div class="leftbar-item">
+                    <ion-icon
+                      name="ellipsis-horizontal-circle-outline"
+                    ></ion-icon
+                    ><span>More</span>
+                  </div>
+                </div>
+                <button class="but but-post">Post</button>
+              </div>
+              <!-- NAV END-->
+
+              <!-- PROFILE -->
+              <div class="profile">
+                <div class="profile-avatar">
+                  <img
+                    class="profile-picture"
+                    src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
+                    alt="profile avatar"
+                  />
+                </div>
+                <div class="profile-info">
+                  <div class="profile-name">DMITRY ULASAU</div>
+                  <div class="profile-nick">@dmitrushok</div>
+                </div>
+                <div class="profile-dots">
+                  <ion-icon name="ellipsis-horizontal"></ion-icon>
+                </div>
+              </div>
+              <!-- PROFILE END -->
+            </div>
+          </div>
+          <!-- LEFT MENU END-->
+
+          <!-- TWEET START -->
+          <div class="col-6">
+            <div class="tweet-0">
+              <img
+                class="tweet__author-logo"
+                src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
+                alt="Profile image"
+              />
+              <div class="tweet__main">
+                <div class="tweet__header"></div>
+                <div class="tweet__content-0" class="home-tweet">
+                  What's happening?
+                </div>
+              </div>
+            </div>
+
+            <!-- TWEET -->
+            <div class="tweet">
+              <img
+                class="tweet__author-logo"
+                src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
+                alt="Rachel Green"
+              />
+              <div class="tweet__main">
+                <div class="tweet__header">
+                  <div class="tweet__author-name">
+                    Rachel Green 👸
+                    <img
+                      class="verified"
+                      src="https://res.cloudinary.com/dulasau/image/upload/v1706488358/Twitter_Verified_Badge_y4aj4x.png"
+                    />
+                  </div>
+                  <div class="tweet__author-slug">@JenniferAniston</div>
+                  <div class="tweet__publish-time">- 18 years ago</div>
+                </div>
+                <div class="tweet__content">
+                  I got off the plane. ✈
+                  <a href="#">#Watch FRIENDS now!</a>
+                  <img
+                    class="tweet__image"
+                    src="https://res.cloudinary.com/dulasau/image/upload/v1706491692/tweet_1_zdwmg4.jpg"
+                    alt="Friends TV Show"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- TWEET END -->
+
+          <!-- RIGHT MENU -->
+
+          <div class="col rightmenu">
+            <!-- SEARCHBAR -->
+            <div class="grey-bg searchbar">
+              <ion-icon class="searchicon" name="search-outline"></ion-icon
+              ><input class="searchinput" type="text" placeholder="Search" />
+            </div>
+            <!-- SEARCHBAR END-->
+
+            <!-- WHAT'S NEW -->
+            <div class="grey-bg what-new">
+              <div class="what-new_block">
+                <div class="what-new__headning">What's happening</div>
+              </div>
+
+              <!-- NEWS 1  -->
+              <a
+                class="what-new_block-content"
+                target="_blank"
+                href="https://people.com/tv/friends-fans-agree-ross-rachel-break/#:~:text=In%20honor%20of%20the%20NBC,Ross%20was%20in%20the%20right."
+              >
+                <div class="what-new__info">We were on a break!</div>
+                <div class="what-new__trend-name">
+                  They were on a break. Of the singles surveyed, 60% believe
+                  that Ross was in the right.
+                </div>
+                <div class="what-new__info">2.0M Posts</div>
+              </a>
+
+              <!-- NEWS 2  -->
+              <a
+                class="what-new_block-content"
+                target="_blank"
+                href="https://twitter.com/FriendsReruns/status/769919234679959553?lang=en"
+              >
+                <div class="what-new__info">
+                  Could I be wearing any more clothes?
+                </div>
+                <div class="what-new__trend-name">
+                  Remember when Joey expertly trolled Chandler, his sweatpants
+                  and his singular approach to intonation?
+                </div>
+                <div class="what-new__info">10.0M Posts</div>
+              </a>
+
+              <!-- NEWS 3  -->
+              <a
+                class="what-new_block-content"
+                target="_blank"
+                href="https://www.youtube.com/watch?app=desktop&v=KnyhOjSqQkw"
+              >
+                <div class="what-new__info">How you doin'?</div>
+                <div class="what-new__trend-name">
+                  This list would not be complete without Joey’s signature
+                  catchphrase.
+                </div>
+                <div class="what-new__info">500.0M Posts</div>
+              </a>
+
+              <!-- SHOW MORE -->
+              <a
+                class="show-more_block"
+                target="_blank"
+                href="https://twitter.com/explore/tabs/for-you"
+              >
+                <div class="show-more">Show more</div>
+              </a>
+            </div>
+            <!-- WHAT'S NEW END-->
+
+            <!-- WHO TO FOLLOW -->
+            <div class="grey-bg follow">
+              <!-- Follow Heading -->
+              <div class="follow_block">
+                <div class="follow__heading">Who to follow</div>
+              </div>
+
+              <!-- Follow 1 -->
+              <div class="follow_block-content">
+                <img
+                  class="follow_author"
+                  src="https://res.cloudinary.com/dulasau/image/upload/v1706488929/joye_uv6igi.png"
+                  alt="author"
+                />
+                <div class="follow__content">
+                  <div>
+                    <div class="follow__author-name">
+                      Matt LeBlanc
+                      <img
+                        class="verified"
+                        alt="twitter verified"
+                        src="https://res.cloudinary.com/dulasau/image/upload/v1706488358/Twitter_Verified_Badge_y4aj4x.png"
+                      />
+                    </div>
+                    <div class="follow-at">@Matt_LeBlanc</div>
+                  </div>
+                </div>
+                <a
+                  class="follow__button"
+                  target="_blank"
+                  href="https://twitter.com/matt_leblanc"
+                  >Follow</a
+                >
+              </div>
+
+              <!-- Follow 2 -->
+              <div class="follow_block-content">
+                <img
+                  class="follow_author"
+                  src="https://res.cloudinary.com/dulasau/image/upload/v1662123521/Monica_avatar_hwyp65.jpg"
+                  alt="author"
+                />
+                <div class="follow__content">
+                  <div>
+                    <div class="follow__author-name">
+                      Courteney Cox
+                      <img
+                        class="verified"
+                        src="https://res.cloudinary.com/dulasau/image/upload/v1706488358/Twitter_Verified_Badge_y4aj4x.png"
+                      />
+                    </div>
+
+                    <div class="follow-at">@CourteneyCox</div>
+                  </div>
+                </div>
+                <a
+                  class="follow__button"
+                  target="_blank"
+                  href="https://twitter.com/courteneycox"
+                  >Follow</a
+                >
+              </div>
+
+              <!-- Follow 3 -->
+              <div class="follow_block-content">
+                <img
+                  class="follow_author"
+                  src="https://res.cloudinary.com/dulasau/image/upload/v1662121997/ROSS_avatar_kkh8jt.jpg"
+                  alt="author"
+                />
+                <div class="follow__content">
+                  <div>
+                    <div class="follow__author-name">
+                      David Schwimmer
+                      <img
+                        class="verified"
+                        alt="twitter verified"
+                        src="https://res.cloudinary.com/dulasau/image/upload/v1706488358/Twitter_Verified_Badge_y4aj4x.png"
+                      />
+                    </div>
+                    <div class="follow-at">@DavidSchwimmer</div>
+                  </div>
+                </div>
+                <a
+                  class="follow__button"
+                  target="_blank"
+                  href="https://twitter.com/DSchwimmer"
+                  >Follow</a
+                >
+              </div>
+
+              <div class="show-more_block">
+                <div class="show-more">Show more</div>
+              </div>
+            </div>
+            <!-- WHO TO FOLLOW END-->
+          </div>
+          <!-- RIGHT MENU END-->
+        </div>
+      </div>
+    </div>
 
     <!-- FIREBASE -->
     <script type="module" src="firebase.js"></script>

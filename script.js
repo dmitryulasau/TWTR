@@ -9,6 +9,11 @@ function hideNotification() {
   notification.style.display = "none";
 }
 
+function hideNotificationLogin() {
+  const notification = document.getElementById("notifications-login");
+  notification.style.display = "none";
+}
+
 function checkPasswordLength() {
   const passwordInput = document.getElementById("password-input-signup");
   const notification = document.getElementById("notifications");
@@ -34,6 +39,13 @@ function checkPasswordMatch() {
   }
 }
 
+function clearForm() {
+  const signupForm = document.querySelector("#signup-form");
+  const loginForm = document.querySelector("#login-form");
+  loginForm.reset();
+  signupForm.reset();
+}
+
 function createDefault() {
   const signupForm = document.querySelector("#signup-form");
   const notification = document.getElementById("notifications");
@@ -45,4 +57,10 @@ function createDefault() {
   singUpFooter.style.display = "block";
   notification.style.display = "none";
   singUpHeading.textContent = "Create your account";
+
+  clearForm();
 }
+
+const popover = new bootstrap.Popover(".popover-dismiss", {
+  trigger: "focus",
+});
