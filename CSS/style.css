@@ -350,44 +350,16 @@ footer {
 }
 
 /* TWEETER */
-#tweeter {
+/* #tweeter {
   display: none;
+}
+
+#main {
+  display: flex;
 }
 
 #logout {
-  display: none;
-}
+  display: block;
+} */
 
 /* ACCOUNT */
-
-.popover {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.popover-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 1;
-  right: 0;
-}
-
-.popover-content button {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  text-align: left;
-  border: none;
-  background-color: #3498db;
-  color: #fff;
-  cursor: pointer;
-}
-
-.popover:hover .popover-content {
-  display: block;
-}

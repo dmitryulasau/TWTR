@@ -61,6 +61,14 @@ function createDefault() {
   clearForm();
 }
 
-const popover = new bootstrap.Popover(".popover-dismiss", {
-  trigger: "focus",
-});
+const homePage = document.getElementById("main");
+const tweeterPage = document.getElementById("tweeter");
+const setupUI = (user) => {
+  if (user) {
+    homePage.style.display = "none";
+    tweeterPage.style.display = "flex";
+  } else {
+    homePage.style.display = "flex";
+    tweeterPage.style.display = "none";
+  }
+};

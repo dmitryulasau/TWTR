@@ -34,7 +34,7 @@
     <!-- Script -->
   </head>
   <body>
-    <main class="container" id="main">
+    <main class="container" id="main" style="display: none">
       <section class="main-logo">
         <img class="twitter-logo" src="./ASSETS/logo.svg" alt="Twitter Logo" />
       </section>
@@ -333,7 +333,7 @@
     <!-- ACCOUNT MODAL END -->
 
     <!-- TWEET MODAL -->
-    <div class="" id="tweeter">
+    <div class="" id="tweeter" style="display: none">
       <!-- DELETE --><!-- DELETE --><!-- DELETE -->
       <button class="btn btn-danger" id="logout">LOGOUT</button>
       <!-- DELETE --><!-- DELETE --><!-- DELETE -->
@@ -400,7 +400,7 @@
                 </div>
                 <div class="profile-info">
                   <div class="profile-name">DMITRY ULASAU</div>
-                  <div class="profile-nick">@dmitrushok</div>
+                  <div class="profile-nick" id="profile-nick"></div>
                 </div>
                 <div class="profile-dots">
                   <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -413,50 +413,36 @@
 
           <!-- TWEET START -->
           <div class="col-6">
-            <div class="tweet-0">
-              <img
-                class="tweet__author-logo"
-                src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
-                alt="Profile image"
-              />
-              <div class="tweet__main">
-                <div class="tweet__header"></div>
-                <div class="tweet__content-0" class="home-tweet">
-                  What's happening?
+            <div class="tweet__post-container">
+              <div class="tweet__post-author">
+                <img
+                  class="tweet__author-logo"
+                  src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
+                  alt="Profile image"
+                />
+              </div>
+              <div class="tweet__post">
+                <div>
+                  <div>
+                    <textarea
+                      rows="1"
+                      placeholder="What's happening!?"
+                    ></textarea>
+                  </div>
+                  <div class="tweet__post-footer">
+                    <div class="upload-container">
+                      <ion-icon class="upload" name="image-outline"></ion-icon>
+                    </div>
+                    <div>
+                      <button class="but but-post no-shadow">Post</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- TWEET -->
-            <div class="tweet">
-              <img
-                class="tweet__author-logo"
-                src="https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png"
-                alt="Rachel Green"
-              />
-              <div class="tweet__main">
-                <div class="tweet__header">
-                  <div class="tweet__author-name">
-                    Rachel Green 👸
-                    <img
-                      class="verified"
-                      src="https://res.cloudinary.com/dulasau/image/upload/v1706488358/Twitter_Verified_Badge_y4aj4x.png"
-                    />
-                  </div>
-                  <div class="tweet__author-slug">@JenniferAniston</div>
-                  <div class="tweet__publish-time">- 18 years ago</div>
-                </div>
-                <div class="tweet__content">
-                  I got off the plane. ✈
-                  <a href="#">#Watch FRIENDS now!</a>
-                  <img
-                    class="tweet__image"
-                    src="https://res.cloudinary.com/dulasau/image/upload/v1706491692/tweet_1_zdwmg4.jpg"
-                    alt="Friends TV Show"
-                  />
-                </div>
-              </div>
-            </div>
+            <div class="alltweets" id="tweeter-field"></div>
           </div>
           <!-- TWEET END -->
 
