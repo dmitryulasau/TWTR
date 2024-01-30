@@ -1,5 +1,7 @@
 .tweet {
   display: flex;
+  width: 100%;
+  flex-grow: 1;
 
   border-bottom: 1px solid #eff3f4;
   border-left: 1px solid #eff3f4;
@@ -12,7 +14,6 @@
 
 .tweet:hover {
   background: rgba(0, 0, 0, 0.04);
-  cursor: pointer;
 }
 
 .tweet a {
@@ -107,6 +108,7 @@
 .tweet__main {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 1rem;
 }
 
@@ -145,6 +147,7 @@ textarea {
 .upload {
   font-size: 20px;
   color: #1d9bf0;
+  cursor: pointer;
 }
 
 .no-shadow {
@@ -169,6 +172,78 @@ textarea {
   cursor: pointer;
 }
 
+label {
+  cursor: pointer;
+}
 .upload-container:hover {
   background: var(--background-hover);
+}
+
+h2 {
+  color: #536471;
+  text-align: center;
+  margin-top: 50%;
+}
+
+/* PREVIEW */
+
+.close-button {
+  font-size: 40px;
+  color: #2c3c43;
+  top: 1rem;
+  right: 0;
+
+  position: absolute;
+
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #536471;
+}
+
+#preview-container {
+  position: relative;
+}
+#previewImage {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* TWEETER CONTROL */
+.tweet__header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.control-button:hover {
+  background: #c2d8e5;
+}
+
+.button-delete {
+  color: #f4212e;
+}
+
+.button-edit {
+  color: #1d9bf0;
 }

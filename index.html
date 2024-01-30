@@ -422,22 +422,49 @@
                 />
               </div>
               <div class="tweet__post">
-                <div>
+                <form id="create-form">
                   <div>
                     <textarea
+                      id="tweetContent"
                       rows="1"
                       placeholder="What's happening!?"
+                      required
                     ></textarea>
+                  </div>
+                  <div id="preview-container" style="display: none">
+                    <img id="previewImage" alt="Preview" />
+                    <div class="close" type="button" onclick="cancelUpload()">
+                      <ion-icon
+                        class="close-button"
+                        name="close-circle"
+                      ></ion-icon>
+                    </div>
                   </div>
                   <div class="tweet__post-footer">
                     <div class="upload-container">
-                      <ion-icon class="upload" name="image-outline"></ion-icon>
+                      <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                      <label for="imageInput">
+                        <ion-icon
+                          class="upload"
+                          name="image-outline"
+                        ></ion-icon>
+                      </label>
                     </div>
                     <div>
-                      <button class="but but-post no-shadow">Post</button>
+                      <button
+                        class="but but-post no-shadow"
+                        onclick="postTweet()"
+                      >
+                        Post
+                      </button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
 

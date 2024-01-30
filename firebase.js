@@ -8,8 +8,17 @@ import {
   getFirestore,
   collection,
   getDocs,
+  addDoc,
+  serverTimestamp,
+  deleteDoc,
+  doc,
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
-
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-storage.js";
 const firebaseConfig = {
   apiKey: "AIzaSyB31YYufPztGZMv1Ciua3FTzg9TnK7VhVc",
   authDomain: "twitterq-c058a.firebaseapp.com",
@@ -20,11 +29,13 @@ const firebaseConfig = {
 };
 
 let currentUser;
+let db;
 
 function initializeFirebase() {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const db = getFirestore(app);
+  db = getFirestore(app);
+  const storage = getStorage(app);
 
   const signupForm = document.querySelector("#signup-form");
   signupForm.addEventListener("submit", async (e) => {
@@ -99,14 +110,14 @@ function initializeFirebase() {
     const profileNick = document.getElementById("profile-nick");
 
     if (user) {
-      console.log("USER LOGGED IN", user);
+      // console.log("USER LOGGED IN", user);
       profileNick.textContent = "@" + user.email.split("@")[0];
 
       currentUser = user.email.split("@")[0];
     } else {
       setupUI();
-      console.log("USER LOGGED OUT");
-      console.log(currentUser);
+      // console.log("USER LOGGED OUT");
+      // console.log(currentUser);
     }
   });
 
@@ -155,6 +166,53 @@ function initializeFirebase() {
       }
     }
   });
+
+  // CREATE TWEET
+  const createForm = document.getElementById("create-form");
+
+  createForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const content = createForm["tweetContent"].value;
+    const imageInput = createForm["imageInput"];
+    const created = serverTimestamp();
+
+    if (imageInput.files.length > 0) {
+      const imageFile = imageInput.files[0];
+      const storageRef = ref(storage, `images/${imageFile.name}`);
+
+      // console.log("Before uploadString");
+
+      try {
+        // Use put method instead of uploadString
+        const snapshot = await uploadBytes(storageRef, imageFile);
+
+        // console.log("Upload successful");
+
+        // Get the download URL after the upload is complete
+        const imageUrl = await getDownloadURL(snapshot.ref);
+
+        // console.log("After getDownloadURL");
+
+        await addDoc(collection(db, "tweets"), {
+          content,
+          image: imageUrl,
+          created,
+        });
+
+        createForm.reset();
+      } catch (error) {
+        console.error("Error during image upload:", error);
+      }
+    } else {
+      await addDoc(collection(db, "tweets"), {
+        content,
+        created,
+      });
+
+      createForm.reset();
+    }
+  });
 }
 
 function clearForm() {
@@ -169,11 +227,19 @@ const tweetsList = document.getElementById("tweeter-field");
 const noAvatar =
   "https://res.cloudinary.com/dulasau/image/upload/v1661875818/noAvatar_wdsdee.png";
 const setupTweets = (data) => {
+  data.sort((a, b) => b.data().created - a.data().created);
+
   if (data.length) {
     let html = "";
     data.forEach((doc) => {
       const tweet = doc.data();
-      console.log(tweet);
+      const tweetId = doc.id;
+      // console.log(tweet);
+
+      const imageHTML = tweet.image
+        ? `<img class="tweet__image" src="${tweet.image}" alt="Tweet Image"/>`
+        : "";
+
       const li = `
       <div class="tweet">
       <img
@@ -183,6 +249,7 @@ const setupTweets = (data) => {
       />
       <div class="tweet__main">
   
+        <div class="tweet__header-container">
         <div class="tweet__header">
           <div class="tweet__author-name">
             ${currentUser}
@@ -198,14 +265,22 @@ const setupTweets = (data) => {
               day: "numeric",
             })}</div>
         </div>
-  
+        <div class="tweet__control">
+        
+        <div class="control-button button-edit">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </div>
+        <div class="control-button button-delete" data-tweet-id="${tweetId}">
+        <ion-icon name="trash-outline"></ion-icon>
+        </div>
+      </div>
+        </div>
+
+        
           <div class="tweet__content">${tweet.content}</div>
           <div>
-          <img
-          class="tweet__image"
-          src="https://res.cloudinary.com/dulasau/image/upload/v1706491692/tweet_1_zdwmg4.jpg"
-          alt="Friends TV Show"
-        /></div>
+          <div>${imageHTML}</div>
+          </div>
   
       </div>
     </div>
@@ -214,8 +289,45 @@ const setupTweets = (data) => {
       html += li;
 
       tweetsList.innerHTML = html;
+
+      addDeleteButtonListeners();
     });
   } else {
     tweetsList.innerHTML = "<h2>NO TWEETS YET</h2>";
   }
 };
+
+function addDeleteButtonListeners() {
+  const deleteButtons = document.querySelectorAll(".button-delete");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const tweetId = button.getAttribute("data-tweet-id");
+      await deleteTweet(tweetId);
+      updateTweets();
+    });
+  });
+}
+
+// DELETE TWEET
+
+async function deleteTweet(tweetId) {
+  try {
+    const tweetDocRef = doc(db, "tweets", tweetId);
+    await deleteDoc(tweetDocRef);
+    console.log("Tweet deleted successfully");
+  } catch (error) {
+    console.error("Error deleting tweet:", error);
+  }
+}
+
+function updateTweets() {
+  const tweetsCollection = collection(db, "tweets");
+
+  getDocs(tweetsCollection)
+    .then((snapshot) => {
+      setupTweets(snapshot.docs);
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+    });
+}
