@@ -43,7 +43,7 @@ body {
 
   width: min-content;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 400;
 
   cursor: pointer;
 
@@ -150,4 +150,8 @@ body {
 .profile-dots {
   margin-left: auto;
   font-size: 2rem;
+}
+
+.leftbar-item.active {
+  font-weight: 700;
 }

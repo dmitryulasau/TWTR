@@ -99,5 +99,13 @@ function cancelUpload() {
   const imageInput = document.getElementById("imageInput");
 
   previewContainer.style.display = "none";
-  imageInput.value = ""; // Clear the file input value
+  imageInput.value = "";
+}
+
+// ACTIVE TABS
+function activateTab(clickedTab) {
+  const tabs = document.querySelectorAll(".leftbar-item");
+  tabs.forEach((tab) => tab.classList.remove("active"));
+
+  clickedTab.classList.add("active");
 }

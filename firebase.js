@@ -114,6 +114,8 @@ function initializeFirebase() {
       profileNick.textContent = "@" + user.email.split("@")[0];
 
       currentUser = user.email.split("@")[0];
+      console.log(currentUser);
+      updateTweets();
     } else {
       setupUI();
       // console.log("USER LOGGED OUT");
@@ -177,40 +179,47 @@ function initializeFirebase() {
     const imageInput = createForm["imageInput"];
     const created = serverTimestamp();
 
+    const previewContainer = document.getElementById("preview-container");
+
     if (imageInput.files.length > 0) {
       const imageFile = imageInput.files[0];
       const storageRef = ref(storage, `images/${imageFile.name}`);
 
-      // console.log("Before uploadString");
-
       try {
-        // Use put method instead of uploadString
         const snapshot = await uploadBytes(storageRef, imageFile);
-
-        // console.log("Upload successful");
-
-        // Get the download URL after the upload is complete
         const imageUrl = await getDownloadURL(snapshot.ref);
 
-        // console.log("After getDownloadURL");
+        const userEmail = auth.currentUser.email;
 
         await addDoc(collection(db, "tweets"), {
           content,
           image: imageUrl,
           created,
+          userId: userEmail,
         });
 
+        // Reset the form to clear all fields, including the file input
         createForm.reset();
+        previewContainer.style.display = "none";
+        imageInput.value = "";
+        updateTweets();
       } catch (error) {
         console.error("Error during image upload:", error);
       }
     } else {
+      const userEmail = auth.currentUser.email;
+
       await addDoc(collection(db, "tweets"), {
         content,
         created,
+        userId: userEmail,
       });
 
+      // Reset the form to clear all fields, including the file input
       createForm.reset();
+      previewContainer.style.display = "none";
+      imageInput.value = "";
+      updateTweets();
     }
   });
 }
@@ -252,9 +261,9 @@ const setupTweets = (data) => {
         <div class="tweet__header-container">
         <div class="tweet__header">
           <div class="tweet__author-name">
-            ${currentUser}
+            ${tweet.userId.split("@")[0].toUpperCase()}
           </div>
-          <div class="tweet__author-slug">@${currentUser}</div>
+          <div class="tweet__author-slug">@${tweet.userId.split("@")[0]}</div>
           <div class="tweet_dot">-</div>
           <div class="tweet__publish-time">${tweet.created
             .toDate()
